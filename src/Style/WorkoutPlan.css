@@ -1,0 +1,26 @@
+.workout-plan {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px 0;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.workout-plan h2 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.workout-plan .plan {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.workout-plan .message {
+  font-size: 1em;
+  color: #666;
+}

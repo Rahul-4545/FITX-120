@@ -1,0 +1,49 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+.calories-section, .goals-section {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px 0;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.calories-section h2, .goals-section h2 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.calories-section p, .goals-section p {
+  font-size: 1.2em;
+  color: #555;
+}
+
+.goals-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.goals-section li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.1em;
+}
+
+.goals-section li:last-child {
+  border-bottom: none;
+}
+
+.loading-message {
+  font-size: 1.2em;
+  color: #888;
+}
