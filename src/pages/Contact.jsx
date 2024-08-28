@@ -42,7 +42,7 @@ const ContactUs = () => {
       </div>
 
       <div className="Last-footer">
-        <p>Design By Rahul Krishnamoorthy</p>
+        <p>Design By Rahul  Krishnamoorthy</p>
       </div>
     </div>
   );
