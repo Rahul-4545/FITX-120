@@ -7,7 +7,7 @@ import { SocketContext } from './SocketContext';
 
 // Styling with styled
 const Root = styled('form')({
-  display: 'flex',
+  display: 'flex ',
   flexDirection: 'column',
 });
 
