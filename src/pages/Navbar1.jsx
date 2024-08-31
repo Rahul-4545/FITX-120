@@ -35,10 +35,10 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="navbar">
+            <nav  className="navbar">
                 <div className="logo1">Fitx 120</div>
                 <ul className={`nav-links ${isOpen ? 'active' : ''}`}>
-                    <li><Link to="/nav1" onClick={toggleMenu}>Home</Link></li>
+                    <li><Link to="/navcontent1" onClick={toggleMenu}>Home</Link></li>
                     <li><Link to="/videochat" onClick={toggleMenu}>Video Chat</Link></li>
                     <li><Link to="/forum" onClick={toggleMenu}>Forum</Link></li>
                     <li><Link to="/dash" onClick={toggleMenu}>Stats</Link></li>
