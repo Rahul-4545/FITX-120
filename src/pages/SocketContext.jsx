@@ -6,10 +6,11 @@ const SocketContext = createContext();
 
 const socket = io('http://localhost:3001');
 
-const ContextProvider = ({ children }) => {
+const SocketProvider = ({ children }) => {
   const [callAccepted, setCallAccepted] = useState(false);
   const [callEnded, setCallEnded] = useState(false);
   const [stream, setStream] = useState();
+  const [screenSharingStream, setScreenSharingStream] = useState(null);
   const [name, setName] = useState('');
   const [call, setCall] = useState({});
   const [me, setMe] = useState('');
@@ -89,6 +90,31 @@ const ContextProvider = ({ children }) => {
     window.location.reload();
   };
 
+  const shareScreen = async () => {
+    try {
+      const screenStream = await navigator.mediaDevices.getDisplayMedia({ cursor: true });
+      setScreenSharingStream(screenStream);
+      const videoTrack = screenStream.getVideoTracks()[0];
+
+      if (connectionRef.current) {
+        connectionRef.current.replaceTrack(stream.getVideoTracks()[0], videoTrack, stream);
+      }
+
+      screenStream.getVideoTracks()[0].onended = () => {
+        if (connectionRef.current) {
+          connectionRef.current.replaceTrack(videoTrack, stream.getVideoTracks()[0], stream);
+        }
+        setScreenSharingStream(null);
+      };
+
+      if (myVideo.current) {
+        myVideo.current.srcObject = screenStream;
+      }
+    } catch (error) {
+      console.error('Error sharing screen:', error);
+    }
+  };
+
   return (
     <SocketContext.Provider value={{
       call,
@@ -103,6 +129,8 @@ const ContextProvider = ({ children }) => {
       callUser,
       leaveCall,
       answerCall,
+      shareScreen,
+      screenSharingStream,
     }}
     >
       {children}
@@ -110,4 +138,4 @@ const ContextProvider = ({ children }) => {
   );
 };
 
-export { ContextProvider, SocketContext };
+export { SocketContext, SocketProvider };

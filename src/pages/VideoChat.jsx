@@ -4,7 +4,9 @@ import { styled } from '@mui/material/styles';
 import VideoPlayer from './VideoPlayer';
 import Notifications from './Notifications';
 import Options from './Options';
+
 import '../Style/VideoChat.css';
+
 
 const AppBarStyled = styled(AppBar)(({ theme }) => ({
   borderRadius: 15,
@@ -27,6 +29,13 @@ const Wrapper = styled('div')({
   width: '100%',
 });
 
+const FeaturesContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'row',
+  width: '100%',
+  justifyContent: 'space-around',
+});
+
 const VideoChat = () => {
   return (
     <Wrapper>
@@ -37,6 +46,7 @@ const VideoChat = () => {
       <Options>
         <Notifications />
       </Options>
+     
     </Wrapper>
   );
 };

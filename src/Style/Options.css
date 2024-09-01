@@ -1,0 +1,19 @@
+/* Styles for the Options component */
+.options-container {
+    width: 600px;
+    margin: 35px 0;
+  }
+  
+  .options-paper {
+    padding: 10px 20px;
+    border: 2px solid black;
+  }
+  
+  .options-padding {
+    padding: 20px 0;
+  }
+  
+  .options-button {
+    margin-top: 10px;
+  }
+  

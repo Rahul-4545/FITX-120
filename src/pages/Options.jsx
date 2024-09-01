@@ -2,10 +2,9 @@ import React, { useContext, useState } from 'react';
 import { Button, TextField, Grid, Typography, Container, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Assignment, Phone, PhoneDisabled } from '@mui/icons-material';
+import { Assignment, Phone, PhoneDisabled, ScreenShare } from '@mui/icons-material'; // Added ScreenShare icon
 import { SocketContext } from './SocketContext';
 
-// Styling with styled
 const Root = styled('form')({
   display: 'flex ',
   flexDirection: 'column',
@@ -41,7 +40,7 @@ const StyledPaper = styled(Paper)({
 });
 
 const Options = ({ children }) => {
-  const { me, callAccepted, name, setName, callEnded, leaveCall, callUser } = useContext(SocketContext);
+  const { me, callAccepted, name, setName, callEnded, leaveCall, callUser, shareScreen } = useContext(SocketContext);
   const [idToCall, setIdToCall] = useState('');
 
   return (
@@ -65,9 +64,14 @@ const Options = ({ children }) => {
                 <Typography gutterBottom variant="h6">Make a call</Typography>
                 <TextField label="ID to call" value={idToCall} onChange={(e) => setIdToCall(e.target.value)} fullWidth />
                 {callAccepted && !callEnded ? (
-                  <Button variant="contained" color="secondary" startIcon={<PhoneDisabled fontSize="large" />} fullWidth onClick={leaveCall}>
-                    Hang Up
-                  </Button>
+                  <>
+                    <Button variant="contained" color="secondary" startIcon={<PhoneDisabled fontSize="large" />} fullWidth onClick={leaveCall}>
+                      Hang Up
+                    </Button>
+                    <Button variant="contained" color="primary" startIcon={<ScreenShare fontSize="large" />} fullWidth onClick={shareScreen}>
+                      Share Screen
+                    </Button>
+                  </>
                 ) : (
                   <Button variant="contained" color="primary" startIcon={<Phone fontSize="large" />} fullWidth onClick={() => callUser(idToCall)}>
                     Call

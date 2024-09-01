@@ -353,7 +353,6 @@ app.post('/api/purchase', (req, res) => {
 
 
 
-// Video Chat Setup
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {

@@ -1,52 +1,34 @@
-/* index.css */
-body {
-    background: rgba(0, 0, 0, 0.3); /* Change this to your desired color */
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+/* VideoChat.css */
+.app-bar {
+  border-radius: 15px;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 80%; /* Adjusted to be more responsive */
+  border: 2px solid black;
+  margin-bottom: 1000px;
 }
 
-* {
-    margin: 0;
-    padding: 0;
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px; /* Ensures the content doesn’t stretch too wide */
+  margin: 0 auto;
 }
-/* Style/VideoChat.css */
 
-body {
-    background-color: #f0f2f5;
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.video-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px 0;
+}
+
+@media (max-width: 600px) {
+  .app-bar {
+    width: 90%;
+    margin: 20px auto;
   }
-  
-  .Wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    padding: 20px;
-  }
-  
-  .MuiTypography-root {
-    font-family: 'Roboto', sans-serif;
-  }
-  
-  .MuiAppBar-root {
-    border-radius: 15px;
-    margin: 30px 100px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 600px;
-    border: 2px solid black;
-  }
-  
-  @media (max-width: 600px) {
-    .MuiAppBar-root {
-      width: 90%;
-      margin: 30px auto;
-    }
-  }
-  
+}

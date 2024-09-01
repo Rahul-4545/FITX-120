@@ -1,0 +1,17 @@
+/* Polls.css */
+.poll-paper {
+    padding: 20px;
+    margin: 20px 0;
+    border: 2px solid black;
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+  .poll-options {
+    margin-top: 10px;
+  }
+  
+  .poll-submitted {
+    margin-top: 20px;
+  }
+  

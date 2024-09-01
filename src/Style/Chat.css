@@ -1,0 +1,15 @@
+/* Chat.css */
+.chat-paper {
+    padding: 20px;
+    margin: 20px 0;
+    border: 2px solid black;
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+  .chat-messages {
+    margin-top: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
