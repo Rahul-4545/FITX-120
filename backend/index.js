@@ -351,8 +351,6 @@ app.post('/api/purchase', (req, res) => {
   });
 });
 
-
-
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
@@ -361,24 +359,75 @@ const io = new Server(server, {
   },
 });
 
+let polls = {}; // Use an object to manage polls
+
 io.on('connection', (socket) => {
   console.log('New client connected with ID:', socket.id);
 
+  // Emit the client's own ID to them
   socket.emit('me', socket.id);
 
+  // Handle disconnection
   socket.on('disconnect', () => {
     socket.broadcast.emit('callEnded');
   });
 
+  // Handle calling another user
   socket.on('callUser', ({ userToCall, signalData, from, name }) => {
     io.to(userToCall).emit('callUser', { signal: signalData, from, name });
   });
 
+  // Handle answering a call
   socket.on('answerCall', (data) => {
     io.to(data.to).emit('callAccepted', data.signal);
   });
+
+  // Handle sending messages
+  // Handle sending messages
+socket.on('sendMessage', ({ to, message, from }) => {
+  io.to(to).emit('messageReceived', { message, from });
 });
 
+// Handle receiving messages
+socket.on('messageReceived', (message) => {
+  // Logic to handle received messages
+});
+
+  // Handle creating a poll
+  socket.on('createPoll', ({ to, question, options, from }) => {
+    const pollId = new Date().getTime(); // Generate a unique ID for the poll
+    const poll = { id: pollId, question, options, votes: {} };
+
+    // Initialize votes for each option
+    options.forEach(option => {
+      poll.votes[option] = 0;
+    });
+
+    if (!polls[to]) {
+      polls[to] = [];
+    }
+    polls[to].push(poll);
+
+    io.to(to).emit('pollCreated', poll);
+  });
+
+  // Handle voting on a poll
+  socket.on('votePoll', ({ pollId, option, from }) => {
+    const roomPolls = polls[from];
+    const poll = roomPolls ? roomPolls.find(p => p.id === pollId) : null;
+    if (poll && poll.votes.hasOwnProperty(option)) {
+      poll.votes[option]++;
+      io.to(from).emit('pollUpdated', poll); // Notify the room about the poll update
+    }
+  });
+
+  // Handle getting polls
+  socket.on('getPolls', (to) => {
+    if (polls[to]) {
+      socket.emit('polls', polls[to]);
+    }
+  });
+});
 // Start the server
 server.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

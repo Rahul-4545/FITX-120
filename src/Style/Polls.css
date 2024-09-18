@@ -1,17 +1,26 @@
-/* Polls.css */
-.poll-paper {
-    padding: 20px;
-    margin: 20px 0;
-    border: 2px solid black;
-    max-width: 600px;
-    margin: 20px auto;
-  }
-  
-  .poll-options {
-    margin-top: 10px;
-  }
-  
-  .poll-submitted {
-    margin-top: 20px;
-  }
-  
+.polls-container {
+  padding: 20px;
+}
+
+.polls-container form {
+  margin-bottom: 20px;
+}
+
+.polls-container input {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.polls-list {
+  margin-top: 20px;
+}
+
+.poll {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.poll-options {
+  margin-top: 10px;
+}

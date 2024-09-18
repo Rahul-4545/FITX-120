@@ -1,11 +1,12 @@
 /* VideoPlayer.css */
 .video {
-  width: 100%;
-  border-radius: 10px;
+  width: 1000%;
+  border-radius: 100px;
 }
 
 .paper-container {
   display: flex;
+  width: 1000%;
   flex-direction: column;
   align-items: center;
   margin: 20px;

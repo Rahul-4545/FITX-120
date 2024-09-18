@@ -1,34 +1,54 @@
 /* VideoChat.css */
-.app-bar {
-  border-radius: 15px;
-  margin: 30px auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 80%; /* Adjusted to be more responsive */
-  border: 2px solid black;
-  margin-bottom: 1000px;
-}
 
 .wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 1200px; /* Ensures the content doesn’t stretch too wide */
-  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  
 }
 
-.video-container {
+.appbar {
+  border-radius: 15px;
+  margin: 30px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+.features-container {
+  display: flex;
+  flex-direction: row;
   width: 100%;
-  max-width: 800px;
-  margin: 20px 0;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
-@media (max-width: 600px) {
-  .app-bar {
-    width: 90%;
-    margin: 20px auto;
+.feature-box {
+  flex: 1;
+  padding: 10px;
+  box-sizing: border-box;
+  max-width: 45%;
+}
+
+.feature-box:not(:last-child) {
+  margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .features-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feature-box {
+    max-width: 100%;
+    margin-bottom: 20px;
   }
 }

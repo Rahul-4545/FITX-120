@@ -14,6 +14,8 @@ const SocketProvider = ({ children }) => {
   const [name, setName] = useState('');
   const [call, setCall] = useState({});
   const [me, setMe] = useState('');
+  const [messages, setMessages] = useState([]);
+  const [polls, setPolls] = useState([]);
 
   const myVideo = useRef(null);
   const userVideo = useRef(null);
@@ -37,7 +39,49 @@ const SocketProvider = ({ children }) => {
     socket.on('callUser', ({ from, name: callerName, signal }) => {
       setCall({ isReceivingCall: true, from, name: callerName, signal });
     });
+
+    socket.on('messageReceived', (message) => {
+      setMessages((prevMessages) => [...prevMessages, message]);
+    });
+
+    socket.on('pollCreated', (poll) => {
+      setPolls((prevPolls) => [...prevPolls, poll]);
+    });
+
+    socket.on('pollUpdated', (poll) => {
+      setPolls((prevPolls) => prevPolls.map(p => p.id === poll.id ? poll : p));
+    });
+
+    socket.on('polls', (roomPolls) => {
+      setPolls(roomPolls);
+    });
+
+    return () => {
+      socket.off('me');
+      socket.off('callUser');
+      socket.off('messageReceived');
+      socket.off('pollCreated');
+      socket.off('pollUpdated');
+      socket.off('polls');
+    };
   }, []);
+
+  const sendMessage = (message) => {
+    socket.emit('sendMessage', { message, name, id: me });
+    setMessages((prevMessages) => [...prevMessages, { message, name }]);
+  };
+
+  const createPoll = (pollData) => {
+    socket.emit('createPoll', { ...pollData, to: me });
+  };
+
+  const votePoll = (pollId, option) => {
+    socket.emit('votePoll', { pollId, option, from: me });
+  };
+
+  const getPolls = () => {
+    socket.emit('getPolls', me);
+  };
 
   const answerCall = () => {
     setCallAccepted(true);
@@ -69,6 +113,7 @@ const SocketProvider = ({ children }) => {
     peer.on('stream', (currentStream) => {
       if (userVideo.current) {
         userVideo.current.srcObject = currentStream;
+
       }
     });
 
@@ -88,6 +133,11 @@ const SocketProvider = ({ children }) => {
     }
 
     window.location.reload();
+  };
+
+  const declineCall = () => {
+    setCall({});
+    socket.emit('declineCall', { to: call.from });
   };
 
   const shareScreen = async () => {
@@ -129,10 +179,16 @@ const SocketProvider = ({ children }) => {
       callUser,
       leaveCall,
       answerCall,
+      declineCall,
       shareScreen,
       screenSharingStream,
-    }}
-    >
+      messages,
+      sendMessage,
+      polls,
+      createPoll,
+      votePoll,
+      getPolls,
+    }}>
       {children}
     </SocketContext.Provider>
   );

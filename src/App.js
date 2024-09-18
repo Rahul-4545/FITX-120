@@ -19,6 +19,9 @@ import Goals from './pages/Goals'
 import WorkoutPlan from './pages/WorkoutPlan';
 import Navbar1 from './pages/Navbar1'
 import Navcontent1 from './pages/Navcontent1'
+import Polls from './pages/Polls';
+import InCallMessages from './pages/InCallMessages';
+import VideoPlayer from './pages/VideoPlayer';
 
 
  
@@ -33,7 +36,7 @@ function App() {
             <Route path="register" element={<Register />} />
             <Route path="/" element={<Login />} />
             <Route path="dash" element={<Dashboard />} />
-            
+            <Route path="video" element={<VideoPlayer />} />
       
             <Route path="special" element={<PersonalizedTraining />} />
             <Route path="navbar" element={<NavBar />} />
@@ -44,7 +47,9 @@ function App() {
             <Route path="about" element={<About/>} />
             <Route path="navcontent" element={<Navcontent/>} />
             <Route path="navcontent1" element={<Navcontent1/>} />
+            <Route path="messages" element={<InCallMessages/>} />
 
+            <Route path="polls" element={<Polls/>} />
             <Route path="address" element={<Addresspage/>} />
             <Route path="forum" element={<Forum/>}/>
             <Route path="videochat" element={<VideoChat/>}/>

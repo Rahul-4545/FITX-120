@@ -1,0 +1,64 @@
+/* InCallMessages.css */
+
+.inCallMessagesContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 300px; /* Adjust based on your design */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin-bottom: 1000px;
+}
+
+.inCallMessagesHeader {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 1000px;
+}
+
+.messageList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 200px; /* Adjust based on your design */
+  overflow-y: auto;
+}
+
+.messageItem {
+  margin-bottom: 10px;
+}
+
+.messageItem:last-child {
+  margin-bottom: 0;
+}
+
+.messageInput {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.sendButton {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.sendButton:hover {
+  background-color: #0056b3;
+}
